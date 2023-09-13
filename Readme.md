@@ -2,7 +2,7 @@
 
 ![Version](https://img.shields.io/badge/version-1.0.0-brightgreen)
 
-[Play-Demo]https://philkrause.github.io/phaser-spacegame/
+[Play Demo](https://philkrause.github.io/phaser-spacegame/)
 
 ## About
 A phaserjs template made with phaserjs v3 and parcel v2. This takes the first tutorial from the phaserjs website and combines it with a suggestive structure for your game. This will run a basic game in your browser at localhost:1234
