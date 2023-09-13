@@ -32,11 +32,5 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Rebuild the dist/ directory
+      - name: Rebuild the docs/ directory
         run: npm run build
-
-      # If index.js was different than expected, upload the expected version as an artifact
-      - uses: actions/upload-artifact@v3
-        with:
-          name: dist
-          path: dist/
