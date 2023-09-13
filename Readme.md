@@ -1,11 +1,11 @@
-# PhaserJS v3 Parcel v2 Template
+# PhaserJS v3 Parcel v2 Spacegame Template
 
 ![Version](https://img.shields.io/badge/version-1.0.0-brightgreen)
 
 ## [Play Demo](https://philkrause.github.io/phaser-spacegame/)
 
 ## About
-A phaserjs template made with phaserjs v3 and parcel v2. This takes the first tutorial from the phaserjs website and combines it with a suggestive structure for your game. This will run a basic game in your browser at localhost:1234
+A phaserjs template made with phaserjs v3 and parcel v2. This combines a few tutorials from the phaserjs website, and combines it with a suggestive structure for your game. This will run a basic game in your browser at localhost:1234
 
 ## Installation
 yarn install
@@ -14,7 +14,7 @@ yarn install
 npm run start
 
 ## Parcel
-Parcel(https://parceljs.org/) web application bundler that simplifies the process of building and bundling assets for web projects. It is useful for managing and serving assets efficiently.  
+[Parcel](https://parceljs.org/) web application bundler that simplifies the process of building and bundling assets for web projects. It is useful for managing and serving assets efficiently.  
 
 ## Contributing
 If you encounter any issues or have suggestions for improvements, please create an issue or pull request. I welcome contributions!
