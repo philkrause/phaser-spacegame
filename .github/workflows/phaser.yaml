@@ -29,17 +29,10 @@ jobs:
 
       - name: Rebuild the docs/ directory
         run: npm run build
-          
-      - name: Copy files to root
-        run: |
-          cp -r ./dist/* .
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-        run: |
-          mkdir -p /home/runner/actions_github_pages_1696542870182
-          cp -r /home/runner/work/phaser-spacegame/phaser-spacegame/dist/* /home/runner/actions_github_pages_1696542870182/
+          publish_dir: ./dist/*
