@@ -29,11 +29,10 @@ jobs:
 
       - name: Rebuild the docs/ directory
         run: npm run build
-
-      - name: Display Current Directory
+          
+      - name: Copy files to root
         run: |
-          pwd
-          ls
+          cp -r ./dist/* .
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
