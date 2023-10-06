@@ -26,10 +26,10 @@ class TitleScene extends Scene {
     
     preload() 
     {
-        this.load.image('title', '../assets/images/title.png');
-        this.load.image('panel', '../assets/images/glassPanel.png');
-        this.load.image('cursor', '../assets/images/cursor_hand.png');
-        this.load.bitmapFont('carrier_command', '../assets/fonts/carrier_command.png', '../assets/fonts/carrier_command.xml');
+        this.load.image('title', './assets/images/title.png');
+        this.load.image('panel', './assets/images/glassPanel.png');
+        this.load.image('cursor', './assets/images/cursor_hand.png');
+        this.load.bitmapFont('carrier_command', './assets/fonts/carrier_command.png', './assets/fonts/carrier_command.xml');
     }
 
     create() 

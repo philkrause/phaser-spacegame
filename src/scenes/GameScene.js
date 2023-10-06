@@ -41,12 +41,12 @@ class GameScene extends Phaser.Scene {
 
     //PRELOAD===================================================================================
     preload() {
-        this.load.image('background', '../assets/images/nebula.jpg');
-        this.load.image('player', '../assets/images/ship_r.png');
-        this.load.image('blue', '../assets/images/blue.png');
-        this.load.image('fire', '../assets/images/fire.png');
-        this.load.image('arrow', '../assets/images/arrow.png');
-        this.load.atlas('space', '../assets/images/space.png', '../assets/images/space.json');
+        this.load.image('background', './assets/images/nebula.jpg');
+        this.load.image('player', './assets/images/ship_r.png');
+        this.load.image('blue', './assets/images/blue.png');
+        this.load.image('fire', './assets/images/fire.png');
+        this.load.image('arrow', './assets/images/arrow.png');
+        this.load.atlas('space', './assets/images/space.png', './assets/images/space.json');
 
         this.cursors = this.input.keyboard.createCursorKeys();
         this.realTime = 0;
