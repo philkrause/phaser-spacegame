@@ -45,15 +45,15 @@ class TitleScene extends Scene {
 		this.handCursor = this.add.image(0, 0, 'cursor').setScale(1.5)
 
         // Play button
-        const playButton = this.add.image(width * 0.5, height * 0.68, 'panel').setDisplaySize(200, 95)
+        const playButton = this.add.image(width * 0.5, height * 0.68, 'panel').setDisplaySize(200, 95).setInteractive();
         const playText = this.add.bitmapText(playButton.x, playButton.y,'carrier_command','Play').setOrigin(0.5)
 
 	    // About button
-	    const aboutButton = this.add.image(playButton.x, playButton.y + playButton.displayHeight + 10, 'panel').setDisplaySize(200, 95);
+	    const aboutButton = this.add.image(playButton.x, playButton.y + playButton.displayHeight + 10, 'panel').setDisplaySize(200, 95).setInteractive();
         const aboutText = this.add.bitmapText(playButton.x, playButton.y + playButton.displayHeight + 10,'carrier_command' ,'About').setOrigin(0.5);
         
         //controltext
-        const controlsText = this.add.bitmapText(width * .2, playButton.y,'carrier_command','Up/Enter: Accelrate\n\nLeft/Right: Turn').setOrigin(0.5).setScale(.3)
+        const controlsText = this.add.bitmapText(width * .2, playButton.y,'carrier_command','Left/Right: Turn').setOrigin(0.5).setScale(.3)
 
         //add buttons and text to arrays we can use later
         this.allButtons.push(playButton,aboutButton);
@@ -70,14 +70,26 @@ class TitleScene extends Scene {
         })
 
         aboutButton.on('selected', () => {
-            this.add.bitmapText(width * .8, aboutButton.y,'carrier_command','Made by\n\nphil krause').setOrigin(0.5).setScale(.3)
+            this.add.bitmapText(width * .8, aboutButton.y,'carrier_command','Made by\n\nphil krause\n\nv1.01').setOrigin(0.5).setScale(.3)
         })
 
+        // Event listeners for selecting the Play button
+        playButton.on('pointerdown', () => {
+            // Handle touch input for the Play button here
+            this.scene.start('GameSceneKey');
+        });
+    
+        // Event listeners for selecting the About button
+        aboutButton.on('pointerdown', () => {
+            // Handle touch input for the About button here
+            this.add.bitmapText(width * 0.8, aboutButton.y, 'carrier_command', 'Made by\n\nphil krause\n\nv1.01').setOrigin(0.5).setScale(0.3);
+        });
         //clean up events
         this.events.once('shutdown', () => {
             playButton.off('pointerdown');
             aboutButton.off('pointerdown');
         });
+
     }
 
     //tinting the button
@@ -100,6 +112,8 @@ class TitleScene extends Scene {
         // store the new selected index
         this.selectedButtonIndex = index
 	}
+
+
 
     //wrap the button index
     selectNextButton(change = 1)
@@ -126,7 +140,6 @@ class TitleScene extends Scene {
         const upJustPressed = Phaser.Input.Keyboard.JustDown(this.cursors.up)
 		const downJustPressed = Phaser.Input.Keyboard.JustDown(this.cursors.down)
 		const enterJustPressed = Phaser.Input.Keyboard.JustDown(this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER))
-        const pointerPressed = this.input.pointer1.isDown
 
         if (upJustPressed)
 		{
@@ -139,7 +152,7 @@ class TitleScene extends Scene {
         else if (enterJustPressed)
 		{
 			this.confirmSelection()
-            pointerPressed;
+            
 		}
     }
 }

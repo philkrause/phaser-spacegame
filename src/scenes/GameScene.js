@@ -64,7 +64,7 @@ class GameScene extends Phaser.Scene {
 
         //player--------------------------------------------
         this.player = this.physics.add.sprite(this.gameWidth * .1, this.gameHeight * .5, 'player').setDepth(2);
-        this.player.setDrag(300)
+        this.player.setDrag(400)
         this.player.setAngularDrag(400)
         this.player.setMaxVelocity(this.playerMaxSpeed)
         this.player.setScale(.7)
