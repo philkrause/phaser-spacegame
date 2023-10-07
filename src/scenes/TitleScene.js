@@ -36,6 +36,7 @@ class TitleScene extends Scene {
     {   
         const width = this.scale.width;
         const height = this.scale.height;
+        this.input.addPointer(1);
 
         //title image
         this.titleImage = this.add.image(width*.5,height*.3,'title').setDisplaySize(width * .5,height * .5)
@@ -125,7 +126,8 @@ class TitleScene extends Scene {
         const upJustPressed = Phaser.Input.Keyboard.JustDown(this.cursors.up)
 		const downJustPressed = Phaser.Input.Keyboard.JustDown(this.cursors.down)
 		const enterJustPressed = Phaser.Input.Keyboard.JustDown(this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER))
-    
+        const pointerPressed = this.input.pointer1.isDown
+
         if (upJustPressed)
 		{
 			this.selectNextButton(-1)
@@ -137,6 +139,7 @@ class TitleScene extends Scene {
         else if (enterJustPressed)
 		{
 			this.confirmSelection()
+            pointerPressed;
 		}
     }
 }

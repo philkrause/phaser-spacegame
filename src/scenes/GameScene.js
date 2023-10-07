@@ -73,6 +73,8 @@ class GameScene extends Phaser.Scene {
             checkPassed: false
         };
 
+        this.input.addPointer(2)
+
         //background----------------------------------------
         this.background = this.add.tileSprite(400, 300, 800, 600, 'background').setScrollFactor(0)
 
@@ -180,11 +182,30 @@ class GameScene extends Phaser.Scene {
             this.playAgainText = this.add.bitmapText(this.gameWidth * .5, this.gameHeight * .8, 'carrier_command', `Press Enter to play again`).setTint(0xff0000).setOrigin(.5).setScrollFactor(0).setScale(.5);
             this.player.disableBody(true, false)
         }
-    }
+    // Create two touch zone rectangles
+    const leftZone = new Phaser.Geom.Rectangle(0, 0, this.gameWidth / 2, this.gameHeight);
+    const rightZone = new Phaser.Geom.Rectangle(this.gameWidth / 2, 0, this.gameWidth / 2, this.gameHeight);
 
+    // Graphics objects to visualize the touch zones (optional)
+    const graphics = this.add.graphics({ fillStyle: { color: 0xff0000, alpha: 0} });
+    graphics.fillRectShape(leftZone).setScrollFactor(0);
+    graphics.fillStyle(0x00ff00, 0);
+    graphics.fillRectShape(rightZone).setScrollFactor(0);
+
+    // Set up touch input handling
+    this.input.on('pointerdown', (pointer) => {
+        if (Phaser.Geom.Rectangle.Contains(leftZone, pointer.x, pointer.y)) {
+            this.player.setAngularVelocity(this.playerTurnSpeed)
+        } else if (Phaser.Geom.Rectangle.Contains(rightZone, pointer.x, pointer.y)) {
+            this.physics.velocityFromRotation(this.player.rotation, 600, this.player.body.acceleration)
+        }
+    });
+        
+    }
+    
     //UPDATE===================================================================================
     update(time, delta) {
-
+        
         //player movement-----------------------------------------
         const {
             left,
@@ -193,6 +214,7 @@ class GameScene extends Phaser.Scene {
             space
         } = this.cursors;
 
+      
         //LEFT
         if (left.isDown) {
             this.player.setAngularVelocity(-this.playerTurnSpeed)
@@ -201,14 +223,8 @@ class GameScene extends Phaser.Scene {
         else if (right.isDown) {
             this.player.setAngularVelocity(this.playerTurnSpeed)
         } else {
-            this.player.setAngularVelocity(0)
-        };
-        //UP
-        if (up.isDown || space.isDown) {
             this.physics.velocityFromRotation(this.player.rotation, 600, this.player.body.acceleration)
-        } else {
-            this.player.setAcceleration(0)
-        }
+        };
 
         //camera-------------------------------------------------
         this.cameras.main.startFollow(this.player);
@@ -247,7 +263,7 @@ class GameScene extends Phaser.Scene {
                 if(this.playerProgress.checkPointIndex <= this.checkPointArray.length){
                     this.playerProgress.checkPointIndex += 1
                 }
-
+                
                 this.playerProgress.checkPassed = true;    
             }
 
