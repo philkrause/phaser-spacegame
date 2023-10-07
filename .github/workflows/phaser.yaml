@@ -37,6 +37,7 @@ jobs:
           git checkout --orphan gh-pages
           git rm -rf .
           cp -r dist/* .
+          cp -r static . 
           git add .
           git commit -m "Deploy to GitHub Pages"
           git push -f origin gh-pages
