@@ -62,27 +62,28 @@ class TitleScene extends Scene {
         // Initialize the selected button index
         this.selectButtonIndex = 0
         this.selectButton(this.selectButtonIndex)
-
+        
         //event listeners for selecting 
         playButton.on('selected', () => {
             this.allButtons = []
             this.scene.start('GameSceneKey')
         })
-
-        aboutButton.on('selected', () => {
-            this.add.bitmapText(width * .15, aboutButton.y-200,'carrier_command','Made by\n\nphil krause\n\nv1.08').setOrigin(0.5).setScale(.5)
-        })
-
         // Event listeners for selecting the Play button
         playButton.on('pointerdown', () => {
             // Handle touch input for the Play button here
             this.scene.start('GameSceneKey');
         });
-    
+        
+        const aboutString = "Made by\n\nphil krause\n\nv1.09"
+
+        aboutButton.on('selected', () => {
+            this.add.bitmapText(width * .15, aboutButton.y-200,'carrier_command',aboutString).setOrigin(0.5).setScale(.5)
+        })
+
         // Event listeners for selecting the About button
         aboutButton.on('pointerdown', () => {
             // Handle touch input for the About button here
-            this.add.bitmapText(width * 0.15, aboutButton.y-200, 'carrier_command', 'Made by\n\nphil krause\n\nv1.08').setOrigin(0.5).setScale(0.3);
+            this.add.bitmapText(width * .15, aboutButton.y-200,'carrier_command',aboutString).setOrigin(0.5).setScale(.5)
         });
         //clean up events
         this.events.once('shutdown', () => {
