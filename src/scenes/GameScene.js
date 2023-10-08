@@ -74,6 +74,7 @@ class GameScene extends Phaser.Scene {
         };
 
         this.input.addPointer(2)
+        this.input.multiTouch = true; // Enable multi-touch gestures
 
         //background----------------------------------------
         this.background = this.add.tileSprite(this.gameWidth/2, this.gameHeight/2, 1080, 1920, 'background').setScrollFactor(0)
