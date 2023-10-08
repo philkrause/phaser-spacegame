@@ -41,13 +41,51 @@ class GameScene extends Phaser.Scene {
 
     //PRELOAD===================================================================================
     preload() {
-        this.load.image('background', './assets/images/nebula.jpg');
-        this.load.image('player', './assets/images/ship_r.png');
-        this.load.image('blue', './assets/images/blue.png');
-        this.load.image('fire', './assets/images/fire.png');
-        this.load.image('arrow', './assets/images/arrow.png');
-        this.load.atlas('space', './assets/images/space.png', './assets/images/space.json');
-
+        
+        const loadingText = this.add.text(
+            this.cameras.main.width / 2,
+            this.cameras.main.height / 2,
+            'Loading...',
+            {
+                fontFamily: 'Arial',
+                fontSize: 24,
+                fill: '#ffffff'
+            }
+        );
+        loadingText.setOrigin(0.5);
+        // Check if assets are already loaded; if not, load them
+        if (!this.textures.exists('background')) {
+            this.load.image('background', './assets/images/nebula.jpg');
+        }
+    
+        if (!this.textures.exists('player')) {
+            this.load.image('player', './assets/images/ship_r.png');
+        }
+    
+        if (!this.textures.exists('blue')) {
+            this.load.image('blue', './assets/images/blue.png');
+        }
+    
+        if (!this.textures.exists('fire')) {
+            this.load.image('fire', './assets/images/fire.png');
+        }
+    
+        if (!this.textures.exists('arrow')) {
+            this.load.image('arrow', './assets/images/arrow.png');
+        }
+    
+        if (!this.textures.exists('space')) {
+            this.load.atlas('space', './assets/images/space.png', './assets/images/space.json');
+        }
+                
+        
+        this.load.on('progress', (value) => {
+            loadingText.setText(`Loading... ${Math.floor(value * 100)}%`);
+        });
+        this.load.on('complete', () => {
+            // Remove the loading message when loading is complete
+            loadingText.destroy();
+    
         this.cursors = this.input.keyboard.createCursorKeys();
         this.realTime = 0;
         this.checkPointArray = [];
@@ -57,6 +95,8 @@ class GameScene extends Phaser.Scene {
         this.green = 0x2eec71
         this.red = 0xff0000
         this.gameOverStatus = false;
+        })
+
     }
 
     //CREATE===================================================================================
@@ -172,8 +212,14 @@ class GameScene extends Phaser.Scene {
                 duration: 1000,
                 repeat: -1,
                 repeatDelay: 1000,
+                yoyo: true,
                 ease: 'back.in',
             })
+            this.playAgainText.setInteractive();
+
+            this.playAgainText.on('pointerdown', () => {
+                this.scene.start('GameSceneKey');
+            });
         }
 
         this.outOfFuel = () => {
@@ -182,33 +228,39 @@ class GameScene extends Phaser.Scene {
             this.gameOverText = this.add.bitmapText(this.gameWidth * .5, this.gameHeight * .6, 'carrier_command', `game over`).setTint(0xff0000).setOrigin(.5).setScrollFactor(0);
             this.playAgainText = this.add.bitmapText(this.gameWidth * .5, this.gameHeight * .8, 'carrier_command', `Press Enter to play again`).setTint(0xff0000).setOrigin(.5).setScrollFactor(0).setScale(.5);
             this.player.disableBody(true, false)
-        }
-    // Create two touch zone rectangles
-    const leftZone = new Phaser.Geom.Rectangle(0, 0, this.gameWidth / 2, this.gameHeight);
-    const rightZone = new Phaser.Geom.Rectangle(this.gameWidth/2, 0, this.gameWidth/2, this.gameHeight);
+            this.playAgainText.setInteractive();
 
-    // Graphics objects to visualize the touch zones (optional)
-    const graphics = this.add.graphics({ fillStyle: { color: 0xff0000, alpha: 0} });
-    graphics.fillRectShape(leftZone).setScrollFactor(0);
-    graphics.fillStyle(0xff0000, 0);
-    graphics.fillRectShape(rightZone).setScrollFactor(0);
-
-    // Set up touch input handling
-    this.input.on('pointerdown', (pointer) => {
-        if (Phaser.Geom.Rectangle.Contains(leftZone, pointer.x, pointer.y)) {
-            this.player.setAngularVelocity(-this.playerTurnSpeed)
-        } else if (Phaser.Geom.Rectangle.Contains(rightZone, pointer.x, pointer.y)) {
-            this.player.setAngularVelocity(this.playerTurnSpeed)
+            this.playAgainText.on('pointerdown', () => {
+                this.scene.start('GameSceneKey');
+            });
         }
-    });
+        // Create two touch zone rectangles
+        const leftZone = new Phaser.Geom.Rectangle(0, 0, this.gameWidth / 2, this.gameHeight);
+        const rightZone = new Phaser.Geom.Rectangle(this.gameWidth/2, 0, this.gameWidth/2, this.gameHeight);
 
-    this.input.on('pointermove', (pointer) => {
-        if (Phaser.Geom.Rectangle.Contains(leftZone, pointer.x, pointer.y)) {
-            this.player.setAngularVelocity(-this.playerTurnSpeed)
-        } else if (Phaser.Geom.Rectangle.Contains(rightZone, pointer.x, pointer.y)) {
-            this.player.setAngularVelocity(this.playerTurnSpeed)
-        }
-    });
+        // Graphics objects to visualize the touch zones (optional)
+        const graphics = this.add.graphics({ fillStyle: { color: 0xff0000, alpha: 0} });
+        graphics.fillRectShape(leftZone).setScrollFactor(0);
+        graphics.fillStyle(0xff0000, 0);
+        graphics.fillRectShape(rightZone).setScrollFactor(0);
+
+        // Set up touch input handling
+        this.input.on('pointerdown', (pointer) => {
+            if (Phaser.Geom.Rectangle.Contains(leftZone, pointer.x, pointer.y)) {
+                this.player.setAngularVelocity(-this.playerTurnSpeed)
+            } else if (Phaser.Geom.Rectangle.Contains(rightZone, pointer.x, pointer.y)) {
+                this.player.setAngularVelocity(this.playerTurnSpeed)
+            }
+        });
+
+        this.input.on('pointermove', (pointer) => {
+            if (Phaser.Geom.Rectangle.Contains(leftZone, pointer.x, pointer.y)) {
+                this.player.setAngularVelocity(-this.playerTurnSpeed)
+            } else if (Phaser.Geom.Rectangle.Contains(rightZone, pointer.x, pointer.y)) {
+                this.player.setAngularVelocity(this.playerTurnSpeed)
+            }
+        });
+
         
     }
     
@@ -246,7 +298,7 @@ class GameScene extends Phaser.Scene {
 
         //calculate things
         this.realTime += 1 / 60
-        this.fuelUsed = this.totalFuel - (this.distance)/1000;
+        this.fuelUsed = this.totalFuel - (this.distance)/20;
         this.currentSpeed = this.player.body.velocity.length();
         this.distance += Math.sqrt(this.player.body.deltaX() * this.player.body.deltaX() + this.player.body.deltaY() * this.player.body.deltaY());
         
