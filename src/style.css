@@ -1,9 +1,12 @@
-body {
+html, body {
   margin: 0;
   padding: 0;
+  height: 100%;
+}
+
+body {
   display: flex;
-  align-items: center; /* Center vertically */
-  height: 100vh; /* 100% of the viewport height */
+  align-items: center;
   min-height: 100%;
   background-color: black;
   background-image: url("./assets/images/css_background.gif"); 
