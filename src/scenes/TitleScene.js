@@ -70,7 +70,7 @@ class TitleScene extends Scene {
         })
 
         aboutButton.on('selected', () => {
-            this.add.bitmapText(width * .8, aboutButton.y+200,'carrier_command','Made by\n\nphil krause\n\nv1.07').setOrigin(0.5).setScale(.5)
+            this.add.bitmapText(width * .15, aboutButton.y-200,'carrier_command','Made by\n\nphil krause\n\nv1.07').setOrigin(0.5).setScale(.5)
         })
 
         // Event listeners for selecting the Play button
@@ -82,7 +82,7 @@ class TitleScene extends Scene {
         // Event listeners for selecting the About button
         aboutButton.on('pointerdown', () => {
             // Handle touch input for the About button here
-            this.add.bitmapText(width * 0.8, aboutButton.y, 'carrier_command', 'Made by\n\nphil krause\n\nv1.07').setOrigin(0.5).setScale(0.3);
+            this.add.bitmapText(width * 0.15, aboutButton.y-200, 'carrier_command', 'Made by\n\nphil krause\n\nv1.07').setOrigin(0.5).setScale(0.3);
         });
         //clean up events
         this.events.once('shutdown', () => {
