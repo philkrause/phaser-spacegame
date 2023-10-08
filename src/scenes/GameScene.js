@@ -77,7 +77,7 @@ class GameScene extends Phaser.Scene {
         this.input.multiTouch = true; // Enable multi-touch gestures
 
         //background----------------------------------------
-        this.background = this.add.tileSprite(this.gameWidth/2, this.gameHeight/2, 1080, 1920, 'background').setScrollFactor(0)
+        this.background = this.add.tileSprite(this.gameWidth/2, this.gameHeight/2, this.gameWidth, this.gameHeight, 'background').setScrollFactor(0)
 
         //add planets----------------------------------------------
         this.add.image(512, 680, 'space', 'blue-planet').setOrigin(0).setScrollFactor(0.6);
