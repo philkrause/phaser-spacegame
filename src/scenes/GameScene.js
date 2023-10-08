@@ -184,20 +184,20 @@ class GameScene extends Phaser.Scene {
         }
     // Create two touch zone rectangles
     const leftZone = new Phaser.Geom.Rectangle(0, 0, this.gameWidth / 2, this.gameHeight);
-    const rightZone = new Phaser.Geom.Rectangle(this.gameWidth / 2, 0, this.gameWidth / 2, this.gameHeight);
+    const rightZone = new Phaser.Geom.Rectangle(this.gameWidth/2, 0, this.gameWidth/2, this.gameHeight);
 
     // Graphics objects to visualize the touch zones (optional)
     const graphics = this.add.graphics({ fillStyle: { color: 0xff0000, alpha: 0} });
     graphics.fillRectShape(leftZone).setScrollFactor(0);
-    graphics.fillStyle(0x00ff00, 0);
+    graphics.fillStyle(0xff0000, 0);
     graphics.fillRectShape(rightZone).setScrollFactor(0);
 
     // Set up touch input handling
     this.input.on('pointerdown', (pointer) => {
         if (Phaser.Geom.Rectangle.Contains(leftZone, pointer.x, pointer.y)) {
-            this.player.setAngularVelocity(this.playerTurnSpeed)
+            this.player.setAngularVelocity(-this.playerTurnSpeed)
         } else if (Phaser.Geom.Rectangle.Contains(rightZone, pointer.x, pointer.y)) {
-            this.physics.velocityFromRotation(this.player.rotation, 600, this.player.body.acceleration)
+            this.player.setAngularVelocity(this.playerTurnSpeed)
         }
     });
         
