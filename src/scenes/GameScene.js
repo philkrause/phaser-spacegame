@@ -193,7 +193,7 @@ class GameScene extends Phaser.Scene {
     graphics.fillRectShape(rightZone).setScrollFactor(0);
 
     // Set up touch input handling
-    this.input.on('pointmove', (pointer) => {
+    this.input.on('pointermove', (pointer) => {
         if (Phaser.Geom.Rectangle.Contains(leftZone, pointer.x, pointer.y)) {
             this.player.setAngularVelocity(-this.playerTurnSpeed)
         } else if (Phaser.Geom.Rectangle.Contains(rightZone, pointer.x, pointer.y)) {
