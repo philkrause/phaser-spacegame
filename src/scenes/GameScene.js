@@ -183,30 +183,32 @@ class GameScene extends Phaser.Scene {
             this.playAgainText = this.add.bitmapText(this.gameWidth * .5, this.gameHeight * .8, 'carrier_command', `Press Enter to play again`).setTint(0xff0000).setOrigin(.5).setScrollFactor(0).setScale(.5);
             this.player.disableBody(true, false)
         }
-        // Create two touch zone rectangles
-        const leftZone = new Phaser.Geom.Rectangle(0, 0, this.gameWidth / 2, this.gameHeight);
-        const rightZone = new Phaser.Geom.Rectangle(this.gameWidth/2, 0, this.gameWidth/2, this.gameHeight);
+    // Create two touch zone rectangles
+    const leftZone = new Phaser.Geom.Rectangle(0, 0, this.gameWidth / 2, this.gameHeight);
+    const rightZone = new Phaser.Geom.Rectangle(this.gameWidth/2, 0, this.gameWidth/2, this.gameHeight);
 
-        // Graphics objects to visualize the touch zones (optional)
-        const graphics = this.add.graphics({ fillStyle: { color: 0xff0000, alpha: 0} });
-        graphics.fillRectShape(leftZone).setScrollFactor(0);
-        graphics.fillStyle(0xff0000, 0);
-        graphics.fillRectShape(rightZone).setScrollFactor(0);
+    // Graphics objects to visualize the touch zones (optional)
+    const graphics = this.add.graphics({ fillStyle: { color: 0xff0000, alpha: 0} });
+    graphics.fillRectShape(leftZone).setScrollFactor(0);
+    graphics.fillStyle(0xff0000, 0);
+    graphics.fillRectShape(rightZone).setScrollFactor(0);
 
-        // Set up touch input handling
-        this.input.on('pointermove', (pointer) => {
-            if (pointer.isDown) {
-                if (Phaser.Geom.Rectangle.Contains(leftZone, pointer.x, pointer.y)) {
-                    this.player.setAngularVelocity(-this.playerTurnSpeed);
-                } else if (Phaser.Geom.Rectangle.Contains(rightZone, pointer.x, pointer.y)) {
-                    this.player.setAngularVelocity(this.playerTurnSpeed);
-                } else {
-                    this.player.setAngularVelocity(0); // Stop turning if not in either zone
-                }
-            } else {
-                this.player.setAngularVelocity(0); // Stop turning when the pointer is released
-            }
-        });
+    // Set up touch input handling
+    this.input.on('pointerdown', (pointer) => {
+        if (Phaser.Geom.Rectangle.Contains(leftZone, pointer.x, pointer.y)) {
+            this.player.setAngularVelocity(-this.playerTurnSpeed)
+        } else if (Phaser.Geom.Rectangle.Contains(rightZone, pointer.x, pointer.y)) {
+            this.player.setAngularVelocity(this.playerTurnSpeed)
+        }
+    });
+
+    this.input.on('pointermove', (pointer) => {
+        if (Phaser.Geom.Rectangle.Contains(leftZone, pointer.x, pointer.y)) {
+            this.player.setAngularVelocity(-this.playerTurnSpeed)
+        } else if (Phaser.Geom.Rectangle.Contains(rightZone, pointer.x, pointer.y)) {
+            this.player.setAngularVelocity(this.playerTurnSpeed)
+        }
+    });
         
     }
     
@@ -221,6 +223,7 @@ class GameScene extends Phaser.Scene {
             space
         } = this.cursors;
 
+      
         //LEFT
         if (left.isDown) {
             this.player.setAngularVelocity(-this.playerTurnSpeed)
