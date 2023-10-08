@@ -298,7 +298,7 @@ class GameScene extends Phaser.Scene {
 
         //calculate things
         this.realTime += 1 / 60
-        this.fuelUsed = this.totalFuel - (this.distance)/20;
+        this.fuelUsed = this.totalFuel - (this.distance)/2000;
         this.currentSpeed = this.player.body.velocity.length();
         this.distance += Math.sqrt(this.player.body.deltaX() * this.player.body.deltaX() + this.player.body.deltaY() * this.player.body.deltaY());
         
