@@ -97,11 +97,11 @@ class GameScene extends Phaser.Scene {
         this.distanceX = this.gameWidth * .02;
         this.distanceY = this.gameHeight * 0.025;
         //text----------------------------------------------
-        this.distanceText = this.add.bitmapText(this.distanceX, this.distanceY, 'carrier_command', '').setTint(this.red).setScale(.5).setScrollFactor(0).setDepth(2)
-        this.realTimeText = this.add.bitmapText(this.distanceX, this.distanceY + 30, 'carrier_command', '').setTint(this.red).setScale(.5).setScrollFactor(0).setDepth(2)
-        this.speedText = this.add.bitmapText(this.distanceX, this.distanceY + 60, 'carrier_command', '').setTint(this.red).setScale(.5).setScrollFactor(0).setDepth(2)
-        this.fuelText = this.add.bitmapText(this.distanceX, this.distanceY + 90, 'carrier_command', '').setTint(this.red).setScale(.5).setScrollFactor(0).setDepth(2)
-        this.checkPointText = this.add.bitmapText(this.distanceX, this.distanceY + 120, 'carrier_command', '').setTint(this.red).setScale(.5).setScrollFactor(0).setDepth(2)
+        this.distanceText = this.add.bitmapText(this.distanceX, this.distanceY, 'carrier_command', '').setTint(this.red).setScale(1).setScrollFactor(0).setDepth(2)
+        this.realTimeText = this.add.bitmapText(this.distanceX, this.distanceY + 60, 'carrier_command', '').setTint(this.red).setScale(1).setScrollFactor(0).setDepth(2)
+        this.speedText = this.add.bitmapText(this.distanceX, this.distanceY + 120, 'carrier_command', '').setTint(this.red).setScale(1).setScrollFactor(0).setDepth(2)
+        this.fuelText = this.add.bitmapText(this.distanceX, this.distanceY + 180, 'carrier_command', '').setTint(this.red).setScale(1).setScrollFactor(0).setDepth(2)
+        this.checkPointText = this.add.bitmapText(this.distanceX, this.distanceY + 240, 'carrier_command', '').setTint(this.red).setScale(1).setScrollFactor(0).setDepth(2)
 
         //function to create particles
         function createShipEmitter(scene, ship, sprite, direction, scale) {
@@ -156,7 +156,7 @@ class GameScene extends Phaser.Scene {
         const emitter7 = createShipEmitter(this, this.checkPoint7, 'fire', 270, .2);
 
         //create arrow
-        this.arrow = this.add.image(this.gameWidth * .9, this.gameHeight * .1, 'arrow').setScrollFactor(0)
+        this.arrow = this.add.image(this.gameWidth * .9, this.gameHeight * .1, 'arrow').setScrollFactor(0).setScale(2)
         //win---------------------------------------------------
         this.gameOver = () => {
             this.gameOverStatus = true;
