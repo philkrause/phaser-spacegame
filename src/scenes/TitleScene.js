@@ -39,7 +39,7 @@ class TitleScene extends Scene {
         this.input.addPointer(1);
 
         //title image
-        this.titleImage = this.add.image(width*.5,height*.3,'title').setDisplaySize(width * .5,height * .5)
+        this.titleImage = this.add.image(width*.5,height*.3,'title').setDisplaySize(width * .7,height * .5)
 
         //cursor image
 		this.handCursor = this.add.image(0, 0, 'cursor').setScale(1.5)
@@ -70,7 +70,7 @@ class TitleScene extends Scene {
         })
 
         aboutButton.on('selected', () => {
-            this.add.bitmapText(width * .8, aboutButton.y,'carrier_command','Made by\n\nphil krause\n\nv1.01').setOrigin(0.5).setScale(.3)
+            this.add.bitmapText(width * .8, aboutButton.y,'carrier_command','Made by\n\nphil krause\n\nv1.02').setOrigin(0.5).setScale(.3)
         })
 
         // Event listeners for selecting the Play button
