@@ -1,5 +1,5 @@
 import { Scene } from 'phaser';
-
+import { VERSION } from '../config/constants.js'
 class TitleScene extends Scene {
     constructor() {
         super({ key: 'TitleSceneKey' });
@@ -74,7 +74,7 @@ class TitleScene extends Scene {
             this.scene.start('GameSceneKey');
         });
         
-        const aboutString = "Made by\n\nphil krause\n\nv1.09"
+        const aboutString = `Made by\n\nphil krause\n\nv${VERSION}`
 
         aboutButton.on('selected', () => {
             this.add.bitmapText(width * .15, aboutButton.y-200,'carrier_command',aboutString).setOrigin(0.5).setScale(.5)
