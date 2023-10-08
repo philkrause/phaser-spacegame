@@ -76,7 +76,7 @@ class GameScene extends Phaser.Scene {
         this.input.addPointer(2)
 
         //background----------------------------------------
-        this.background = this.add.tileSprite(400, 300, 800, 600, 'background').setScrollFactor(0)
+        this.background = this.add.tileSprite(this.gameWidth/2, this.gameHeight/2, 1920, 1080, 'background').setScrollFactor(0)
 
         //add planets----------------------------------------------
         this.add.image(512, 680, 'space', 'blue-planet').setOrigin(0).setScrollFactor(0.6);

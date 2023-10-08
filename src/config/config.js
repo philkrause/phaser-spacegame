@@ -8,6 +8,10 @@ var startSceneConfig = {
     height: GAME_HEIGHT,
     scene: [TitleScene,GameScene],
     pixelArt: true,
+    scale: {
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH
+    },
     zoom: 1,
     physics: {
         default: 'arcade',
