@@ -200,6 +200,7 @@ class GameScene extends Phaser.Scene {
         this.arrow = this.add.image(this.gameWidth * .9, this.gameHeight * .1, 'arrow').setScrollFactor(0).setScale(2)
         //win---------------------------------------------------
         this.gameOver = () => {
+            this.checkPointText.setText(`ships rescued: 7/7`)
             this.gameOverStatus = true;
             this.winText = this.add.bitmapText(this.gameWidth * .5, this.gameHeight * .4, 'carrier_command', `All Ships Rescued!`).setTint(0xff0000).setOrigin(.5).setScrollFactor(0);
             this.distanceGMText = this.add.bitmapText(this.gameWidth * .5, this.gameHeight * .6, 'carrier_command', `distance: ${this.distance.toFixed(2)}`).setTint(0xff0000).setOrigin(.5).setScrollFactor(0).setScale(.5);
