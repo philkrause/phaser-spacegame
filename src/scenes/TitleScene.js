@@ -39,21 +39,21 @@ class TitleScene extends Scene {
         this.input.addPointer(1);
 
         //title image
-        this.titleImage = this.add.image(width*.5,height*.3,'title').setDisplaySize(width * .7,height * .5)
+        this.titleImage = this.add.image(width*.5,height*.3,'title').setDisplaySize(width,height * .5)
 
         //cursor image
 		this.handCursor = this.add.image(0, 0, 'cursor').setScale(1.5)
 
         // Play button
-        const playButton = this.add.image(width * 0.5, height * 0.68, 'panel').setDisplaySize(200, 95).setInteractive();
+        const playButton = this.add.image(width * 0.5, height * 0.68, 'panel').setDisplaySize(400, 200).setInteractive();
         const playText = this.add.bitmapText(playButton.x, playButton.y,'carrier_command','Play').setOrigin(0.5)
 
 	    // About button
-	    const aboutButton = this.add.image(playButton.x, playButton.y + playButton.displayHeight + 10, 'panel').setDisplaySize(200, 95).setInteractive();
+	    const aboutButton = this.add.image(playButton.x, playButton.y + playButton.displayHeight + 10, 'panel').setDisplaySize(400, 200).setInteractive();
         const aboutText = this.add.bitmapText(playButton.x, playButton.y + playButton.displayHeight + 10,'carrier_command' ,'About').setOrigin(0.5);
         
         //controltext
-        const controlsText = this.add.bitmapText(width * .2, playButton.y,'carrier_command','Left/Right: Turn').setOrigin(0.5).setScale(.3)
+        //const controlsText = this.add.bitmapText(width * .2, playButton.y,'carrier_command','Left/Right: Turn').setOrigin(0.5).setScale(.5)
 
         //add buttons and text to arrays we can use later
         this.allButtons.push(playButton,aboutButton);
@@ -70,7 +70,7 @@ class TitleScene extends Scene {
         })
 
         aboutButton.on('selected', () => {
-            this.add.bitmapText(width * .8, aboutButton.y,'carrier_command','Made by\n\nphil krause\n\nv1.02').setOrigin(0.5).setScale(.3)
+            this.add.bitmapText(width * .8, aboutButton.y+200,'carrier_command','Made by\n\nphil krause\n\nv1.02').setOrigin(0.5).setScale(.5)
         })
 
         // Event listeners for selecting the Play button
